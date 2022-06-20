@@ -18,8 +18,10 @@ public class ChatRoomController {
     // 채팅 리스트 화면
     @GetMapping("/room")
     public String rooms(Model model) {
+        // return시 맨 앞에 /를 붙이면 리눅스 환경에서 타임리프 에러 발생 -> / 제거
         return "chat/room";
     }
+
     // 모든 채팅방 목록 반환
     @GetMapping("/rooms")
     @ResponseBody
@@ -36,12 +38,14 @@ public class ChatRoomController {
     @GetMapping("/room/enter/{roomId}")
     public String roomDetail(Model model, @PathVariable String roomId) {
         model.addAttribute("roomId", roomId);
+        // return시 맨 앞에 /를 붙이면 리눅스 환경에서 타임리프 에러 발생 -> / 제거
         return "chat/roomdetail";
     }
     // 특정 채팅방 조회
     @GetMapping("/room/{roomId}")
     @ResponseBody
     public ChatRoom roomInfo(@PathVariable String roomId) {
+        // return시 맨 앞에 /를 붙이면 리눅스 환경에서 타임리프 에러 발생 -> / 제거
         return chatService.findById(roomId);
     }
 }
